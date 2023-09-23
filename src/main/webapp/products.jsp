@@ -111,7 +111,7 @@
 						<button type="button" class="btn btn-secondary"
 							data-bs-dismiss="modal">Close</button>
 						<form action="deleteProduct" method="post">
-							<input type="hidden" id="delete_product_id" name="product_id" />
+							<input type="hidden" id="delete_product_id" name="product_idx`" />
 							<button type="submit" class="btn btn-primary">Delete it</button>
 						</form>
 					</div>
@@ -134,8 +134,7 @@
 						<div class="modal-body">
 							<input type="hidden" name="product_id" id="update_product_id" />
 							<div class="form-floating mb-3">
-								<select name="maker_id" class="form-select">
-									<option value="" id="update_maker_id" selected ></option>
+								<select name="maker_id" id="maker_id" class="form-select">
 									<c:forEach var="make" items="${makes}">
 										<option value="${make.id}">${make.name}</option>
 									</c:forEach>
@@ -169,8 +168,7 @@
 
 	function openUpdateModal(id, make, model,maker_id) {
 		$('#update_product_id').val(id);
-		$('#update_maker_id').val(maker_id);
-		$('#update_maker_id').text(make);
+		$('#maker_id').val(maker_id)
 		$('#update_model').val(model);
 		$('#updateModal').modal('show');
 	}

@@ -8,8 +8,6 @@ import java.util.List;
 
 import com.ace.ai.web.Product;
 
-
-
 public class ProductRepo extends BaseRepo {
 	public List<Product> findAll() {
 		try {
@@ -34,12 +32,12 @@ public class ProductRepo extends BaseRepo {
 		}
 		return null;
 	}
-	
+
 	public boolean createProduct(Product product) {
 		try {
 			Connection conn = getConnection();
 			PreparedStatement ps = conn.prepareStatement("insert into products (maker_id,model) values(?,?);");
-			
+
 			ps.setInt(1, product.getMaker_id());
 			ps.setString(2, product.getModel());
 			ps.executeUpdate();
@@ -49,7 +47,7 @@ public class ProductRepo extends BaseRepo {
 		}
 		return false;
 	}
-	
+
 	public void updateProduct(Product product) {
 		try {
 			Connection conn = getConnection();
@@ -58,24 +56,24 @@ public class ProductRepo extends BaseRepo {
 			ps.setString(2, product.getModel());
 			ps.setInt(3, product.getId());
 			ps.executeUpdate();
-			
+
 		} catch (Exception e) {
 			System.out.println(e);
 		}
 	}
-	
+
 	public void deleteProduct(int id) {
 		try {
 			Connection conn = getConnection();
 			PreparedStatement ps = conn.prepareStatement("Delete from products where id = ?");
 			ps.setInt(1, id);
 			ps.executeUpdate();
-			
+
 		} catch (Exception e) {
 			System.out.println(e);
 		}
 	}
-	
+
 	public boolean checkModelName(String model) {
 		try {
 			Connection conn = getConnection();
@@ -91,7 +89,7 @@ public class ProductRepo extends BaseRepo {
 		}
 		return false;
 	}
-	
+
 	public Product checkUpdateModel(String model) {
 		try {
 			Connection conn = getConnection();
@@ -112,5 +110,5 @@ public class ProductRepo extends BaseRepo {
 		}
 		return null;
 	}
-	
+
 }

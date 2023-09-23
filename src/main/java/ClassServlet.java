@@ -1,6 +1,5 @@
 
 import com.ace.ai.web.Class;
-import com.ace.ai.web.Student;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -18,22 +17,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-
-@WebServlet( urlPatterns = "/class")
+@WebServlet(urlPatterns = "/class")
 public class ClassServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
 
-    public ClassServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+	public ClassServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		if (request.getSession().getAttribute("loginUserName") != null) {
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if(request.getSession().getAttribute("loginUserName") != null) {
-			
 			File file = new File("Class.txt");
 			FileWriter writer = new FileWriter(file);
 			BufferedWriter bWriter = new BufferedWriter(writer);
@@ -43,34 +39,33 @@ public class ClassServlet extends HttpServlet {
 			bWriter.write("React,Thukha,10-6-2020\n");
 			bWriter.close();
 			writer.close();
-			
+
 			FileReader reader = new FileReader(file);
 			BufferedReader bReader = new BufferedReader(reader);
-			String classData =bReader.readLine();
-			
+			String classData = bReader.readLine();
+
 			List<Class> classes = new ArrayList<>();
 			while (classData != null) {
 				String[] data = classData.split(",");
 				classes.add(new Class(data[0], data[1], data[2]));
-				classData =bReader.readLine();
+				classData = bReader.readLine();
 			}
-			
-			
+
 //			classes.add(new Class("Java","Thukha PyaeSone","12-5-2023"));
 //			classes.add(new Class("dotNet","Thukha PyaeSone","18-7-2023"));
 //			classes.add(new Class("C#","Thukha PyaeSone","10-6-2023"));
 			request.setAttribute("classes", classes);
-			
-			PrintWriter out  = response.getWriter();
+
+			PrintWriter out = response.getWriter();
 			request.getRequestDispatcher("class.jsp").include(request, response);
-		}else {
+		} else {
 			response.sendRedirect("login");
 		}
 	}
 
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 	}
 
 }

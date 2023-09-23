@@ -13,13 +13,14 @@ public class SubmitFeedBack extends HttpServlet {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
-	protected void doGet(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
-		if(request.getSession().getAttribute("loginUserName") != null) {
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		if (request.getSession().getAttribute("loginUserName") != null) {
 			String feedback = request.getParameter("feedback");
 			request.setAttribute("feedback", feedback);
 			request.getRequestDispatcher("successFeedBack.jsp").include(request, response);
-		}else {
+		} else {
 			response.sendRedirect("login");
 		}
 	}

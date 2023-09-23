@@ -31,7 +31,7 @@ public class UserRepo extends BaseRepo {
 		}
 		return null;
 	}
-	
+
 	public User findUserById(int id) {
 		try {
 			Connection conn = getConnection();
@@ -81,7 +81,8 @@ public class UserRepo extends BaseRepo {
 	public boolean createUser(User user) {
 		try {
 			Connection conn = getConnection();
-			PreparedStatement ps = conn.prepareStatement("insert into user (name,password,email,phone_number) values (?,?,?,?);");
+			PreparedStatement ps = conn
+					.prepareStatement("insert into user (name,password,email,phone_number) values (?,?,?,?);");
 
 			ps.setString(1, user.getName());
 			ps.setString(2, user.getPassword());
@@ -94,17 +95,18 @@ public class UserRepo extends BaseRepo {
 		}
 		return false;
 	}
-	
+
 	public void updateUser(User user) {
 		try {
 			Connection conn = getConnection();
-			PreparedStatement ps = conn.prepareStatement("update user set phone_number = ? , name = ? , email = ? where id = ?;");
+			PreparedStatement ps = conn
+					.prepareStatement("update user set phone_number = ? , name = ? , email = ? where id = ?;");
 			ps.setString(1, user.getPhoneNumber());
 			ps.setString(2, user.getName());
 			ps.setString(3, user.getEmail());
 			ps.setInt(4, user.getId());
 			ps.executeUpdate();
-			
+
 		} catch (Exception e) {
 			System.out.println(e);
 		}
@@ -116,13 +118,13 @@ public class UserRepo extends BaseRepo {
 			PreparedStatement ps = conn.prepareStatement("Delete from user where id = ?");
 			ps.setInt(1, id);
 			ps.executeUpdate();
-			
+
 		} catch (Exception e) {
 			System.out.println(e);
 		}
 	}
-	
-	public void ChangePassword(int id,String newPassword) {
+
+	public void ChangePassword(int id, String newPassword) {
 		try {
 			Connection conn = getConnection();
 			PreparedStatement ps = conn.prepareStatement("update user set password = ? where id = ?;");

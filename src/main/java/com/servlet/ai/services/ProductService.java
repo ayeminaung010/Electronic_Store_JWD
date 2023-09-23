@@ -41,13 +41,13 @@ public class ProductService {
 		return false;
 	}
 
-	public boolean checkUpdateModel(String model,int id) {
+	public boolean checkUpdateModel(String model, int id) {
 		ProductRepo productRepo = new ProductRepo();
 		Product product = productRepo.checkUpdateModel(model);
 		if (product == null) {
 			return false;
 		} else {
-			if(id == product.getId()) {
+			if (id == product.getId()) {
 				return false;
 			}
 			return true;

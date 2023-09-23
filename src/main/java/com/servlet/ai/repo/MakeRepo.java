@@ -8,7 +8,6 @@ import java.util.List;
 
 import com.ace.ai.web.Make;
 
-
 public class MakeRepo extends BaseRepo {
 	public List<Make> findAll() {
 		try {

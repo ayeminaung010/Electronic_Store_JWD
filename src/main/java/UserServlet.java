@@ -1,5 +1,4 @@
 
-
 import java.io.IOException;
 import java.util.List;
 
@@ -13,21 +12,22 @@ import com.ace.ai.web.User;
 import com.servlet.ai.services.UserSrevice;
 
 @WebServlet(urlPatterns = "/user")
-public class UserServlet extends HttpServlet  {
+public class UserServlet extends HttpServlet {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if(request.getSession().getAttribute("loginUserName") != null) {
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		if (request.getSession().getAttribute("loginUserName") != null) {
 			UserSrevice userSrevice = new UserSrevice();
 			List<User> users = userSrevice.findAll();
-			
+
 			request.setAttribute("users", users);
 			request.getRequestDispatcher("user.jsp").include(request, response);
-		}else {
+		} else {
 			response.sendRedirect("login");
 		}
 	}

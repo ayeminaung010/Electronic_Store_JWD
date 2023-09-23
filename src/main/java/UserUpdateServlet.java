@@ -17,18 +17,19 @@ public class UserUpdateServlet extends HttpServlet {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		int id = Integer.parseInt(request.getParameter("user_id"));
-		String name =  request.getParameter("name");
+		String name = request.getParameter("name");
 		String email = request.getParameter("email");
 		String phone_number = request.getParameter("phone_number");
-		
+
 		UserSrevice userSrevice = new UserSrevice();
-		if(userSrevice.checkEmailAlreadyExistAtUpdate(email,id)) {
-			//return error 
+		if (userSrevice.checkEmailAlreadyExistAtUpdate(email, id)) {
+			// return error
 			request.setAttribute("errorMessage", "Email already exits....!");
 			request.getRequestDispatcher("error.jsp").include(request, response);
-		}else {
+		} else {
 			User user = new User();
 			user.setId(id);
 			user.setName(name);

@@ -31,10 +31,10 @@ public class ProductUpdateServlet extends HttpServlet {
 		String model = request.getParameter("model");
 
 		ProductService productService = new ProductService();
-		
+
 		Product new_p = new Product();
-		
-		if (!productService.checkUpdateModel(model,product_id)) {
+
+		if (!productService.checkUpdateModel(model, product_id)) {
 			new_p.setId(product_id);
 			new_p.setMaker_id(maker_id);
 			new_p.setModel(model);
@@ -44,7 +44,7 @@ public class ProductUpdateServlet extends HttpServlet {
 			request.setAttribute("errorMessage", "Model Name Already exits...!");
 			request.getRequestDispatcher("error.jsp").forward(request, response);
 		}
-		
+
 	}
 
 }

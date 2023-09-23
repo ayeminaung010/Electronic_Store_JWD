@@ -13,11 +13,12 @@ public class FeedBack extends HttpServlet {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
-	protected void doGet(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
-		if(request.getSession().getAttribute("loginUserName") != null) {
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		if (request.getSession().getAttribute("loginUserName") != null) {
 			request.getRequestDispatcher("feedback.jsp").include(request, response);
-		}else {
+		} else {
 			response.sendRedirect("login");
 		}
 	}
