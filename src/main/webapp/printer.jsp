@@ -40,10 +40,13 @@
 							<td>${printer.color }</td>
 							<td>${printer.price }</td>
 							<td>
-								<button type="button" onclick="openUpdateModal(${printer.id },${printer.product_id },${printer.price},`${printer.color}`)" class="btn btn-info">Update</button>
+								<button type="button"
+									onclick="openUpdateModal(${printer.id },${printer.product_id },${printer.price},`${printer.color}`)"
+									class="btn btn-info">Update</button>
 							</td>
 							<td>
-								<button type="button" onclick="openDeleteModal(${printer.id })" class="btn btn-danger">Delete</button>
+								<button type="button" onclick="openDeleteModal(${printer.id })"
+									class="btn btn-danger">Delete</button>
 							</td>
 						</tr>
 					</c:forEach>
@@ -63,14 +66,15 @@
 						<button type="button" class="btn-close" data-bs-dismiss="modal"
 							aria-label="Close"></button>
 					</div>
-					<form action="createPrinter" method="post">
+					<form action="printers/add" method="post">
 						<div class="modal-body">
 							<div class="form-floating mb-3">
-								
+
 								<select name="product_id" class="form-select">
 									<option value="" disabled selected>Select One</option>
 									<c:forEach var="product" items="${products}">
-										<option value="${product.id}">${product.model} - ${product.make} </option>
+										<option value="${product.id}">${product.model}-
+											${product.make}</option>
 									</c:forEach>
 								</select> <label for="floatingInput">Product</label>
 							</div>
@@ -95,7 +99,7 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<!-- delete modal  -->
 		<div class="modal fade" id="deleteModal" tabindex="-1"
 			aria-labelledby="deleteModalLabel" aria-hidden="true">
@@ -111,7 +115,7 @@
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary"
 							data-bs-dismiss="modal">Close</button>
-						<form action="deletePrinter" method="post">
+						<form action="printers/delete" method="post">
 							<input type="hidden" id="delete_printer_id" name="printer_id" />
 							<button type="submit" class="btn btn-primary">Delete it</button>
 						</form>
@@ -119,8 +123,8 @@
 				</div>
 			</div>
 		</div>
-		
-				<!-- update modal -->
+
+		<!-- update modal -->
 		<div class="modal fade" id="updateModal" tabindex="-1"
 			aria-labelledby="updateModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
@@ -131,18 +135,20 @@
 						<button type="button" class="btn-close" data-bs-dismiss="modal"
 							aria-label="Close"></button>
 					</div>
-					<form action="updatePrinter" method="post">
+					<form action="printers/update" method="post">
 						<div class="modal-body">
 							<input type="hidden" name="printer_id" id="update_printer_id" />
 							<div class="form-floating mb-3">
-								<select name="product_id" id="update_printer_product_id" class="form-select">
+								<select name="product_id" id="update_printer_product_id"
+									class="form-select">
 									<option value="" disabled selected>Select One</option>
 									<c:forEach var="product" items="${products}">
-										<option value="${product.id}">${product.model} - ${product.make} </option>
+										<option value="${product.id}">${product.model}-
+											${product.make}</option>
 									</c:forEach>
 								</select> <label for="floatingInput">Product</label>
 							</div>
-							
+
 							<div class="form-floating mb-3">
 								<input type="text" name="color" class="form-control"
 									id="update_printer_color" placeholder="Enter color"> <label

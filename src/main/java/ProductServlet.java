@@ -16,7 +16,7 @@ import com.servlet.ai.services.ProductService;
 /**
  * Servlet implementation class ProductServlet
  */
-@WebServlet("/products")
+@WebServlet("/products/*")
 public class ProductServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -45,7 +45,61 @@ public class ProductServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		String path = request.getPathInfo();
+		
+		ProductService productService = new ProductService();
+		if(path == null) {
+			doGet(request, response);
+		}else {
+			switch (path) {
+			case "/add":
+				int maker_id = Integer.parseInt(request.getParameter("maker_id"));
+				String model = request.getParameter("model");
+				
+				if (!productService.checkModel(model)) {
+					Product product = new Product();
+					product.setMaker_id(maker_id);
+					product.setModel(model);
+					boolean status = productService.addProduct(product);
+
+					if (status) {
+						response.sendRedirect(request.getContextPath() +"/products");
+					} else {
+						request.setAttribute("errorMessage", "Model Name Already exits...!");
+						request.getRequestDispatcher("error.jsp").forward(request, response);
+					}
+				} else {
+					request.setAttribute("errorMessage", "Model Name Already exits...!");
+					request.getRequestDispatcher("error.jsp").forward(request, response);
+				}
+				
+				break;
+			case "/update":
+				
+				int product_id = Integer.parseInt(request.getParameter("product_id"));
+				int update_maker_id = Integer.parseInt(request.getParameter("maker_id"));
+				String update_model = request.getParameter("model");
+				Product new_p = new Product();
+				if (!productService.checkUpdateModel(update_model, product_id)) {
+					new_p.setId(product_id);
+					new_p.setMaker_id(update_maker_id);
+					new_p.setModel(update_model);
+					productService.updateProduct(new_p);
+					response.sendRedirect(request.getContextPath() +"/products");
+				} else {
+					request.setAttribute("errorMessage", "Model Name Already exits...!");
+					request.getRequestDispatcher("error.jsp").forward(request, response);
+				}
+				
+				break;
+			case "/delete":
+				int id = Integer.parseInt(request.getParameter("product_id"));
+				productService.deleteProduct(id);
+				response.sendRedirect(request.getContextPath() +"/products");
+				break;
+			}	
+		}
+
 	}
 
 }

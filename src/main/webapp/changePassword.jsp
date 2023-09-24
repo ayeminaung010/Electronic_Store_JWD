@@ -8,7 +8,7 @@
 </head>
 <body>
 
-	<form action="changePassword" method="post">
+	<form action="user/changePassword" method="post">
 		
 		Old Password: <input type="password" name="oldPassword" > <br/>
 		New Password: <input type="password" name="newPassword" > <br/>

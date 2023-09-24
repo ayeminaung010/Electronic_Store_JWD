@@ -69,7 +69,7 @@
 						<button type="button" class="btn-close" data-bs-dismiss="modal"
 							aria-label="Close"></button>
 					</div>
-					<form action="productCreate" method="post">
+					<form action="products/add" method="post">
 						<div class="modal-body">
 							<div class="form-floating mb-3">
 								<select name="maker_id" class="form-select">
@@ -110,8 +110,8 @@
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary"
 							data-bs-dismiss="modal">Close</button>
-						<form action="deleteProduct" method="post">
-							<input type="hidden" id="delete_product_id" name="product_idx`" />
+						<form action="products/delete" method="post">
+							<input type="hidden" id="delete_product_id" name="product_id" />
 							<button type="submit" class="btn btn-primary">Delete it</button>
 						</form>
 					</div>
@@ -130,7 +130,7 @@
 						<button type="button" class="btn-close" data-bs-dismiss="modal"
 							aria-label="Close"></button>
 					</div>
-					<form action="updateProduct" method="post">
+					<form action="products/update" method="post">
 						<div class="modal-body">
 							<input type="hidden" name="product_id" id="update_product_id" />
 							<div class="form-floating mb-3">

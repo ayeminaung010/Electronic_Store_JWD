@@ -24,7 +24,7 @@
 					<button type="button" class="btn-close" data-bs-dismiss="modal"
 						aria-label="Close"></button>
 				</div>
-				<form action="userCreate" method="post">
+				<form action="user/add" method="post">
 					<div class="modal-body">
 
 						<div class="form-floating mb-3">
@@ -136,7 +136,7 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
 						data-bs-dismiss="modal">Close</button>
-					<form action="deleteUser" method="post">
+					<form action="user/delete" method="post">
 						<input type="hidden" id="delete_user_id" name="user_id" />
 						<button type="submit" class="btn btn-primary">Delete it</button>
 					</form>
@@ -155,7 +155,7 @@
 					<button type="button" class="btn-close" data-bs-dismiss="modal"
 						aria-label="Close"></button>
 				</div>
-				<form action="updateUser" method="post">
+				<form action="user/update" method="post">
 					<div class="modal-body">
 						<input type="hidden" name="user_id" id="update_user_id" />
 						<div class="form-floating mb-3">
