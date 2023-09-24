@@ -29,6 +29,9 @@
 					<li class="nav-item ms-5"><a
 						class="nav-link <%=currentPath.equals("/products") ? "active" : ""%> text-uppercase text-white"
 						href="products">Products Management</a></li>
+					<li class="nav-item ms-5"><a
+						class="nav-link <%=currentPath.equals("/printers") ? "active" : ""%> text-uppercase text-white"
+						href="printers">Printer Management</a></li>
 				</ul>
 				<a href="logout" class="btn btn-warning">LogOut</a>
 			</div>

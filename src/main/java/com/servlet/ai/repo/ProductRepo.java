@@ -20,10 +20,10 @@ public class ProductRepo extends BaseRepo {
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				Product p = new Product();
-				p.setId(rs.getInt(1));
-				p.setMake(rs.getString(2));
-				p.setModel(rs.getString(3));
-				p.setMaker_id(rs.getInt(4));
+				 p.setId(rs.getInt(1));
+				 p.setMake(rs.getString(2));
+				 p.setModel(rs.getString(3));
+				 p.setMaker_id(rs.getInt(4));
 				products.add(p);
 			}
 			return products;

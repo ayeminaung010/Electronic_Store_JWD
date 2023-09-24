@@ -38,7 +38,7 @@ public class CreateProductServlet extends HttpServlet {
 			product.setMaker_id(maker_id);
 			product.setModel(model);
 			boolean status = productService.addProduct(product);
-			System.out.println(status);
+
 			if (status) {
 				request.getRequestDispatcher("/products").include(request, response);
 			} else {
