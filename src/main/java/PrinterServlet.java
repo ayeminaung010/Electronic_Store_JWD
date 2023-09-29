@@ -63,11 +63,9 @@ public class PrinterServlet extends HttpServlet {
 		} else {
 			switch (path) {
 			case "/add":
-				System.out.println("add method");
 				int productId = Integer.parseInt(request.getParameter("product_id"));
 				String color = request.getParameter("color");
 				Double price = Double.parseDouble(request.getParameter("price"));
-				System.out.println(productId + color + price);
 
 				try {
 					Printer printer = new Printer();
@@ -83,7 +81,6 @@ public class PrinterServlet extends HttpServlet {
 				}
 				break;
 			case "/update":
-				System.out.println("update method");
 				int update_productId = Integer.parseInt(request.getParameter("product_id"));
 				String update_color = request.getParameter("color");
 				Double update_price = Double.parseDouble(request.getParameter("price"));
@@ -105,7 +102,6 @@ public class PrinterServlet extends HttpServlet {
 
 				break;
 			case "/delete":
-				System.out.println("delete method");
 				int id = Integer.parseInt(request.getParameter("printer_id"));
 
 				try {
